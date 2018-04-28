@@ -6,6 +6,7 @@ import io.vertx.core.Context;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
@@ -87,6 +88,9 @@ public class MQClientProviderVerticle extends AbstractVerticle {
         }
         System.out.println("Connection succeeded!");
         basicPublishTest(client);
+       context.response()
+               .putHeader("content-type", "application/json; charset=utf-8")
+               .end("Rabbit MQ 消息发送成功！");
     }
 
     //声明队列
@@ -110,6 +114,7 @@ public class MQClientProviderVerticle extends AbstractVerticle {
             }
         });
     }
+
 }
 
 
