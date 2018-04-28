@@ -1,0 +1,9 @@
+采用vert.x的handler形式设计RabbitMQ 点对点信息传输试验。
+Provider：
+    创建 http server 监听某个端口；
+    在http的handler添加mq连接并发布消息；
+    当触发http请求时，mq发布消息到RabbitMQ客户端。
+Consumer：
+    创建mq连接，并监听指定队列；
+    当队列有消息时触发event bus事件，接收并确认消息。
+ 其中消息队列是非持久、自动删除形式。
